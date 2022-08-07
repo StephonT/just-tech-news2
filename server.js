@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -29,10 +30,13 @@ const sess = {
 
 app.use(session(sess));
 
+//Import the helper functions
+const helpers = require('./utils/helpers');
+
 
 // Setting up Handlebars.js
-
-const hbs = exphbs.create({});
+//Passed helpers through hbs variable
+const hbs = exphbs.create({ helpers });
 
 //Setting up handlebars.js
 app.engine('handlebars', hbs.engine);
